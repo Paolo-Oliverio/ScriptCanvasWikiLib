@@ -1,0 +1,26 @@
+{
+  "none": {
+        "Source": [
+            "Source/precompiled.cpp",
+            "Source/precompiled.h"
+        ]
+    },
+     "auto": {
+        "Include": [
+            "Include/ScriptCanvasWikiLib/ScriptCanvasWikiLibGem.h"
+        ],
+        "Source": [
+            "Source/ScriptCanvasWikiSystemComponent.h",
+			"Source/ScriptCanvasWikiSystemComponent.cpp",
+            "Source/ScriptCanvasWikiLibGem.cpp"
+        ],
+        "Source/Library": [
+            "Source/WikiLibrary.h",
+            "Source/WikiLibrary.cpp"
+        ],
+        "Source/OnNextTick": [
+            "Source/OnNextTick.h",
+            "Source/OnNextTick.cpp"
+        ]
+    }
+}

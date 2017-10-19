@@ -1,0 +1,36 @@
+def build(bld):
+########################################################################################
+# Need to build a /dev relative path; otherwise, a gem/code relative path is used.
+########################################################################################
+    import os
+    driver_node = bld.path.find_or_declare('Gems/ScriptCanvas/Code/Include/ScriptCanvas/')
+    gem_node = bld.path.find_or_declare('Gems/StartingPointInput/Code/')
+    script_canvas_dir = driver_node.path_from(gem_node)
+######################################################################################## 
+    AZ_CODEGEN_ARGS = az_code_gen = [{
+                'files'   : ['Source/OnNextTick.h'],
+                'scripts' : [os.path.join(script_canvas_dir, 'CodeGen/Drivers/ScriptCanvasNode.py')],
+                'arguments' : [
+                                #'-OnlyRunDiagnosticsOnMainFile=true',
+                                #'-SuppressDiagnostics=false',
+                                #'-SuppressErrorsAsWarnings=false',
+                                #'-output-redirection=file',
+                                '-SuppressIncludeNotFoundError=false',
+                            ],
+                'options' : ['PrintOutputRedirectionFile']
+            }] 
+    bld.DefineGem(
+		pch    			= "Source/precompiled.cpp",
+        use    			= [ 'AzFramework', 'ScriptCanvas' ],
+		defines         = ['SCRIPTCANVAS', 'SCRIPTCANVAS_ERRORS_ENABLED', 'NOT_USE_CRY_MEMORY_MANAGER'],
+        includes        = [ '.','..','Include','Source'],
+        export_includes = ['.'],
+		# Suppressing level 1 warning C4351 on windows
+        # new behavior: elements of array 'array' will be default initialized
+        # https://msdn.microsoft.com/en-us/library/1ywe7hcy.aspx
+        win_cxxflags = ['/wd4351', '/W3','/wd4251', '/wd4275'],
+        features    = ['az_code_gen'],
+		az_code_gen = AZ_CODEGEN_ARGS,
+		file_list = ['scriptcanvaswikilib.waf_files'],
+        test_all_file_list = ['scriptcanvaswikilib_tests.waf_files']
+    )
