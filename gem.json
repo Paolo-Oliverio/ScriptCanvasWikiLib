@@ -1,0 +1,27 @@
+{
+	"Dependencies": [
+        {
+            "Uuid" : "869a0d0ec11a45c299917d45c81555e6",
+            "VersionConstraints" : [">=0.1.0"],
+            "_comment" : "ScriptCanvas"
+        },
+        {
+            "Uuid" : "ff06785f7145416b9d46fde39098cb0c",
+            "VersionConstraints" : [">=0.1.0"],
+            "_comment" : "LmbrCentral"
+        }
+    ], 
+    "GemFormatVersion": 4,
+    "Uuid": "8ee821732fdc428f8a67c0030c6935d4",
+    "Name": "ScriptCanvasWikiLib",
+    "DisplayName": "ScriptCanvas Wiki Library",
+    "Version": "0.1.0",
+    "Summary": "A short description of my Gem.",
+    "Tags": ["ScriptCanvas"],
+    "IconPath": "preview.png",
+    "Modules": [
+        {
+            "Type": "GameModule"
+        }
+    ]
+}
