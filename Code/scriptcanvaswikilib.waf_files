@@ -18,7 +18,7 @@
             "Source/WikiLibrary.h",
             "Source/WikiLibrary.cpp"
         ],
-        "Source/OnNextTick": [
+        "Source/Nodes/Utilities": [
             "Source/OnNextTick.h",
             "Source/OnNextTick.cpp"
         ]
