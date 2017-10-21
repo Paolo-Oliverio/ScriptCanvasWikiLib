@@ -12,7 +12,7 @@
 
 #include "precompiled.h"
 #include "InputAxesCleanup.h"
-
+#include <AzCore/Component/TickBus.h>
 
 namespace ScriptCanvas
 {
@@ -29,22 +29,16 @@ namespace ScriptCanvas
             {
 				float x = InputAxesCleanupProperty::GetXIn(this);
 				float y = InputAxesCleanupProperty::GetYIn(this);
-				float multiplier = InputAxesCleanupProperty::GetMultiplier(this);
-				m_x = x * sqrtf(1 - y * y * 0.5f) * multiplier;
-				m_y = y * sqrtf(1 - x * x * 0.5f) * multiplier;
-				ScriptCanvas::SlotId pslotId = InputAxesCleanupProperty::GetXAxisSlotId(this);
-				Datum o(Data::Type::Number(), Datum::eOriginality::Copy);
-				o.Set(m_x);
+				float deltatime = 0;
+				EBUS_EVENT_RESULT(deltatime, AZ::TickRequestBus, GetTickDeltaTime);
+				float multiplier = InputAxesCleanupProperty::GetMultiplier(this) * deltatime;
+				m_result.Set( x * sqrtf(1 - y * y * 0.5f) * multiplier, y * sqrtf(1 - x * x * 0.5f) * multiplier , 0.0f);
+				ScriptCanvas::SlotId pslotId = InputAxesCleanupProperty::GetResultSlotId(this);
+				Datum o(Data::Type::Vector3(), Datum::eOriginality::Copy);
+				o.Set(m_result);
 				if (auto* slot = GetSlot(pslotId))
 				{
 					PushOutput(o, *slot);
-				}
-				ScriptCanvas::SlotId pslotIdy = InputAxesCleanupProperty::GetYAxisSlotId(this);
-				Datum oy(Data::Type::Number(), Datum::eOriginality::Copy);
-				oy.Set(m_y);
-				if (auto* slot = GetSlot(pslotIdy))
-				{
-					PushOutput(oy, *slot);
 				}
 				SignalOutput(GetSlotId("Out"));
             }

@@ -14,6 +14,7 @@
 #include <ScriptCanvas/CodeGen/CodeGen.h>
 #include <ScriptCanvas/Core/Node.h>
 #include <AzCore/Component/TickBus.h>
+#include <AzCore/Math/Vector3.h>
 #include <Source/InputAxesCleanup.generated.h>
 
 namespace ScriptCanvas
@@ -43,21 +44,14 @@ namespace ScriptCanvas
 				ScriptCanvas_Property(float,
 					ScriptCanvas_Property::Name("Y In", "The time this node will remain active.")
 					ScriptCanvas_Property::Input);
-				ScriptCanvas_Property(float, ScriptCanvas_Property::Name("Multiplier", "X Axis Value")
-					ScriptCanvas_Property::Input
-				);
-
-				ScriptCanvas_Property(float, ScriptCanvas_Property::Name("XAxis", "X Axis Value")
-					ScriptCanvas_Property::Visibility(false)
+				ScriptCanvas_Property(float, 
+					ScriptCanvas_Property::Name("Multiplier", "axis Multiplier")
+					ScriptCanvas_Property::Input);
+				ScriptCanvas_Property(AZ::Vector3,
+					ScriptCanvas_Property::Name("Result", "Result vector")
 					ScriptCanvas_Property::Output
-					ScriptCanvas_Property::OutputStorageSpec
-				);
-				ScriptCanvas_Property(float, ScriptCanvas_Property::Name("YAxis", "Y Axis Value")
-					ScriptCanvas_Property::Visibility(false)
-					ScriptCanvas_Property::Output
-					ScriptCanvas_Property::OutputStorageSpec
-				);
-				float m_x, m_y;
+					ScriptCanvas_Property::OutputStorageSpec);
+				AZ::Vector3 m_result;
             };
         }
     }
