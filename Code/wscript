@@ -8,7 +8,7 @@ def build(bld):
     script_canvas_dir = driver_node.path_from(gem_node)
 ######################################################################################## 
     AZ_CODEGEN_ARGS = az_code_gen = [{
-                'files'   : ['Source/OnNextTick.h'],
+                'files'   : ['Source/OnNextTick.h','Source/InputAxesCleanup.h'],
                 'scripts' : [os.path.join(script_canvas_dir, 'CodeGen/Drivers/ScriptCanvasNode.py')],
                 'arguments' : [
                                 #'-OnlyRunDiagnosticsOnMainFile=true',

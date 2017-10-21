@@ -21,6 +21,10 @@
         "Source/Nodes/Utilities": [
             "Source/OnNextTick.h",
             "Source/OnNextTick.cpp"
+        ],
+		"Source/Nodes/Input": [
+            "Source/InputAxesCleanup.h",
+            "Source/InputAxesCleanup.cpp"
         ]
     }
 }
