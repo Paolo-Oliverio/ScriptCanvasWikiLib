@@ -1,6 +1,7 @@
 #include "precompiled.h"
 #include <WikiLibrary.h>
 #include "OnNextTick.h"
+#include "InputAxesCleanup.h"
 #include <ScriptCanvas/Libraries/Libraries.h>
 
 namespace ScriptCanvas
@@ -30,12 +31,14 @@ namespace ScriptCanvas
         void Wiki::InitNodeRegistry(NodeRegistry& nodeRegistry)
         {
             Library::AddNodeToRegistry<Wiki, Nodes::Wiki::OnNextTick>(nodeRegistry);
+			Library::AddNodeToRegistry<Wiki, Nodes::Wiki::InputAxesCleanup>(nodeRegistry);
         }
 
         AZStd::vector<AZ::ComponentDescriptor*> Wiki::GetComponentDescriptors()
         {
             return AZStd::vector<AZ::ComponentDescriptor*>({
                 Nodes::Wiki::OnNextTick::CreateDescriptor(),
+				Nodes::Wiki::InputAxesCleanup::CreateDescriptor(),
             });
         }
     }
