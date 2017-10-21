@@ -47,20 +47,17 @@ namespace ScriptCanvas
 					ScriptCanvas_Property::Input
 				);
 
-				ScriptCanvas_Property(float, ScriptCanvas_Property::Name("X Axis", "X Axis Value")
+				ScriptCanvas_Property(float, ScriptCanvas_Property::Name("XAxis", "X Axis Value")
+					ScriptCanvas_Property::Visibility(false)
 					ScriptCanvas_Property::Output
 					ScriptCanvas_Property::OutputStorageSpec
-					ScriptCanvas_Property::Visibility(false)
-					ScriptCanvas_Property::Transient
 				);
-					
-				ScriptCanvas_Property(float, ScriptCanvas_Property::Name("Y Axis", "Y Axis Value")
+				ScriptCanvas_Property(float, ScriptCanvas_Property::Name("YAxis", "Y Axis Value")
+					ScriptCanvas_Property::Visibility(false)
 					ScriptCanvas_Property::Output
 					ScriptCanvas_Property::OutputStorageSpec
-					ScriptCanvas_Property::Visibility(false)
-					ScriptCanvas_Property::Transient
 				);
-					float m_x, m_y;
+				float m_x, m_y;
             };
         }
     }
